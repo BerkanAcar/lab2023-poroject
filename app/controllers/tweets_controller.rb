@@ -1,10 +1,13 @@
 class TweetsController < ApplicationController
+	before_action :authenticate_user!
+
 	def index
-		@tweets = Tweet.all
+		@tweets = Tweet.where(user_id: current_user.id).all
 	end
 
 	def new
 		@tweet = Tweet.new
+
 	end
 
 	def edit
@@ -13,6 +16,7 @@ class TweetsController < ApplicationController
 
 	def create
 		@tweet = Tweet.new(tweet_params)
+		@tweet.user_id = current_user.id
 
 		if @tweet.save
 			redirect_to @tweet
@@ -42,6 +46,6 @@ class TweetsController < ApplicationController
 
 	private
 		def tweet_params
-			params.require(:tweet).permit(:text)
+			params.require(:tweet).permit(:text, :user_id, :count)
 		end
 end

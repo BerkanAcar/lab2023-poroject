@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
+	before_action :authenticate_user!
 	def index
-		@messages = Message.all
+		@messages = Message.where(user_id: current_user.id).all
 	end
 
 	def new
@@ -9,6 +10,7 @@ class MessagesController < ApplicationController
 
 	def create
 		@message = Message.new(message_params)
+		@message.user_id = current_user.id
 		if @message.save
 			redirect_to messages_path
 		else

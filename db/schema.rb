@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715074330) do
+ActiveRecord::Schema.define(version: 20160715083243) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "text"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20160715074330) do
   end
 
   add_index "comments", ["tweet_id"], name: "index_comments_on_tweet_id"
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.text     "text"

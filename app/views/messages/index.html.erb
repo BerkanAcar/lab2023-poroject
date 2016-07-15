@@ -1,0 +1,14 @@
+<h1>Listing messages</h1>
+ 
+<table>
+  <tr>
+    <th>Text</th>
+  </tr>
+ 
+  <% @messages.each do |message| %>
+    <tr>
+      <td><%= message.text %></td>
+    </tr>
+  <% end %>
+</table>
+<%= render template: "messages/new" %>

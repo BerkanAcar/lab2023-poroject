@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'welcome/index'
+   get "profile" => "welcome#profile", :as => :profile
 
   devise_for :users
+  resources :users
   resources :tweets do
     resources :comments
   end

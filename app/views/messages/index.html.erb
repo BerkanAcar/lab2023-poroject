@@ -1,13 +1,16 @@
-<h1>Listing messages</h1>
+<%= render "welcome/navbar" %>
+<h1>messages</h1>
  
 <table>
-  <tr>
-    <th>Text</th>
-  </tr>
  
   <% @messages.each do |message| %>
     <tr>
-      <td><%= message.text %></td>
+    	<form class="form-horizontal">
+	    	<div class="form-group form-group-lg">
+	    		<td><label class="col-sm-2 control-label"><%= current_user.name %>:</label></td>
+	      		<td><%= message.text %></td>
+	    	</div>
+	    </form>
     </tr>
   <% end %>
 </table>

@@ -1,19 +1,21 @@
 <%= render 'navbar' %>
 <% if user_signed_in?%>
+	<a href="profile">
+		<div class="round-image col-sm-2"><%= image_tag(current_user.avatar.url(:thumb)) %>
+	</a>
+	<div id="tablo user"><%= current_user.name + current_user.surname %><br /><%= current_user.birth_day.to_time.strftime('%d.%m.%Y') %></div>
+	</div>		
 	
+		
 
-	<table>
-			<tr>
-				<td><li class="round-image"><%= image_tag(current_user.avatar.url(:thumb)) %></li></td>
-				<td><%= current_user.name %></td>
-			</tr>
-	</table>
 
-	<table align="center">
-			<% @tweets.each do |tweet| %>
-				<tr>
-					<td><%= tweet.text %></td>
-				</tr>
-			<% end %>
-	</table>
+		<% @tweets.each do |tweet| %>
+			<h1><div id="boxx" class="tweet row clearfix" align="center">
+				<%= image_tag(current_user.avatar.url(:thumb)) %>
+			    <ol class=""><%= link_to tweet.text, tweet %><br></ol>
+			    <%= tweet.name %>
+			    <small class="timestamp"><%= time_ago_in_words(tweet.created_at) + " ago"%></small>
+			</div></h1>
+		<% end %>
+		
 <% end %>

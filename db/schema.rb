@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717183525) do
+ActiveRecord::Schema.define(version: 20160720112711) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "text"
@@ -33,9 +33,12 @@ ActiveRecord::Schema.define(version: 20160717183525) do
     t.text     "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
     t.integer  "count"
+    t.integer  "user_id"
+    t.string   "name"
   end
+
+  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
 
 # Could not dump table "users" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass

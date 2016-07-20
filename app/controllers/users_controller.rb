@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
+		@user.tweets.create
 		if @user.save
 			redirect_to @user
 		else
@@ -24,6 +25,10 @@ class UsersController < ApplicationController
 		else
 			render 'edit'
 		end
+	end
+
+	def profile
+		@user_tweets = @user.tweets
 	end
 	private
 		def set_user

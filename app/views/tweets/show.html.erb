@@ -2,6 +2,8 @@
 <p>
   <strong>Text:</strong>
   <%= @tweet.text %>
+  <%= @tweet.user.name %>
+  <%= image_tag(current_user.avatar.url(:thumb)) %>
 </p>
 
 <h2>Comments</h2>

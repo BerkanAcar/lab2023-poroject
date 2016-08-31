@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
 	end
 
 	def new
-		@tweet = Tweet.new
+		@tweet = current_user.tweets.build
 	end
 
 	def edit
@@ -14,8 +14,8 @@ class TweetsController < ApplicationController
 	end
 
 	def create
-		@tweet = Tweet.new(tweet_params)
-		@tweet.name = current_user.name
+		@tweet = current_user.tweets.build(tweet_params)
+		
 		if @tweet.save
 			redirect_to @tweet
 		else

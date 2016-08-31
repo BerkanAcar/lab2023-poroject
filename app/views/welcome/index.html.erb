@@ -1,21 +1,33 @@
 <%= render 'navbar' %>
 <% if user_signed_in?%>
-	<a href="profile">
-		<div class="round-image col-sm-2"><%= image_tag(current_user.avatar.url(:thumb)) %>
-	</a>
-	<div id="tablo user"><%= current_user.name + current_user.surname %><br /><%= current_user.birth_day.to_time.strftime('%d.%m.%Y') %></div>
-	</div>		
-	
-		
-
-
+	<div class="col-lg-4">
+		<a href="profile">
+			<div class="round-image col-sm-2"><%= image_tag(current_user.avatar.url(:thumb)) %>
+				<div class="col-sm-2"><%= current_user.name + current_user.surname %><br /><%= current_user.birth_day.to_time.strftime('%d.%m.%Y') %></div>
+			</div>
+		</a>
+	</div>
+	<div class="col-lg-4">
 		<% @tweets.each do |tweet| %>
-			<h1><div id="boxx" class="tweet row clearfix" align="center">
+			<h1><div id="" class="tweet row clearfix" align="center">
 				<%= image_tag(current_user.avatar.url(:thumb)) %>
 			    <ol class=""><%= link_to tweet.text, tweet %><br></ol>
-			    <%= tweet.name %>
 			    <small class="timestamp"><%= time_ago_in_words(tweet.created_at) + " ago"%></small>
 			</div></h1>
 		<% end %>
-		
+	</div>
 <% end %>
+<div class="col-lg-4" align="center">
+	<ul class="nav nav-pills nav-stacked">
+		<button class="btn btn-primary" data-toggle="collapse" data-target="#demo">Active User</button>
+			<div id="demo" class="collapse">
+				<% @users.each do |user| %>
+					<% if user.online? %>
+						<li role="presentation">
+							<%= link_to user.name, user %>
+						</li>
+					<% end %>
+				<% end %>
+			</div>
+	</ul>
+</div>
